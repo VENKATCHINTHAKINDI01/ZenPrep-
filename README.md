@@ -4,6 +4,8 @@
 
 # ZenPrep 🧘
 
+**BY:VENKAT CHINTHAKINDI**
+
 ### *Prepare Calmly. Perform Confidently.*
 
 **AI-powered multilingual mock interview platform built for India 🇮🇳**  
