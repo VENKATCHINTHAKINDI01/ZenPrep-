@@ -1,442 +1,502 @@
-ZenPrep
-Prepare Calmly. Perform Confidently.
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-AI-Powered Multilingual Mock Interview Platform
-Complete Technical Documentation & Developer Guide
-  Framework: Next.js 16  |  Language: TypeScript  |  Version: 1.0.0  
+<div align="center">
 
+<img src="public/logo.png" alt="ZenPrep Logo" width="120" height="120" />
 
-1. Project Overview
-ZenPrep is an AI-powered multilingual mock interview platform built specifically for Indian job seekers. It enables candidates to practice job interviews in their native Indian language using real-time voice interaction, and receive detailed AI-generated feedback with personalized upskilling resources.
+# ZenPrep 🧘
 
-🎯  Key Differentiator: ZenPrep is the only open-source interview prep platform supporting 11 Indian languages with voice-based AI interaction and structured feedback.
+### *Prepare Calmly. Perform Confidently.*
 
-1.1 What Makes ZenPrep Different
-Feature	Traditional Platforms	ZenPrep
-Language Support	English only	11 Indian languages
-Interview Mode	Text-based	Voice + Text (AI-powered)
-Feedback Engine	Generic tips	6-dimension AI scoring
-Upskilling Resources	Not provided	AI-curated per weak area
-Voice Engine	None	Sarvam AI (Indian voices)
-Score Visualization	Simple score	Radar chart breakdown
-Domain Coverage	Generic	11 specialized domains
-Dashboard Stats	None	Avg score, trends, top domain
+**AI-powered multilingual mock interview platform built for India 🇮🇳**  
+Practice real voice interviews in your native language. Get honest AI feedback. Land your dream job.
 
-1.2 Supported Indian Languages
-Language	Code	Native Script	Voice Model
-English (India)	en-IN	English	bulbul:v2
-Hindi	hi-IN	हिन्दी	bulbul:v2
-Tamil	ta-IN	தமிழ்	bulbul:v2
-Telugu	te-IN	తెలుగు	bulbul:v2
-Bengali	bn-IN	বাংলা	bulbul:v2
-Kannada	kn-IN	ಕನ್ನಡ	bulbul:v2
-Malayalam	ml-IN	മലയാളം	bulbul:v2
-Marathi	mr-IN	मराठी	bulbul:v2
-Gujarati	gu-IN	ગુજરાતી	bulbul:v2
-Punjabi	pa-IN	ਪੰਜਾਬੀ	bulbul:v2
-Odia	or-IN	ଓଡ଼ିଆ	bulbul:v2
+<br/>
 
+![Next.js](https://img.shields.io/badge/Next.js_16-black?style=for-the-badge&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq_AI-F55036?style=for-the-badge&logo=groq&logoColor=white)
 
+</div>
 
-2. Technology Stack
-2.1 Core Framework & Language
-Technology	Version	Role	Why Chosen
-Next.js	16.1.6	Full-stack React framework	App Router, Server Actions, API Routes, Turbopack
-TypeScript	5.x	Type-safe JavaScript	Compile-time safety, better DX, interface contracts
-React	19.x	UI component library	Hooks, Suspense, Server Components
-Node.js	24.x	JavaScript runtime	Required by Next.js, async I/O for API calls
+---
 
-2.2 Styling
-Library	Purpose	Key Classes Used
-Tailwind CSS v4	Utility-first CSS framework	Dark mode, responsive grid, animations
-tailwind-merge	Merge conflicting Tailwind classes	Used in cn() utility function
-clsx	Conditional class names	Dynamic class binding in components
-class-variance-authority	Component variant system	Button variants (primary, secondary, ghost)
-tailwindcss-animate	Animation utilities	Card entrance, pulse, spin animations
+## 📌 Table of Contents
 
-2.3 AI & Voice Services
-Service	SDK	Model	Purpose
-Groq AI	@ai-sdk/groq	llama-3.3-70b-versatile	Interview question generation
-Groq AI	@ai-sdk/groq	llama-3.3-70b-versatile	Feedback analysis (JSON parsing)
-Sarvam AI	axios (REST)	bulbul:v2	Text-to-Speech (AI speaks questions)
-Sarvam AI	axios (REST)	saarika:v2.5	Speech-to-Text (user's answers)
-Vercel AI SDK	ai	—	Unified AI interface, generateText()
+- [What is ZenPrep?](#-what-is-zenprep)
+- [Key Features](#-key-features)
+- [Tech Stack](#️-tech-stack)
+- [How It Works](#-how-it-works)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Environment Variables](#-environment-variables)
+- [Firebase Setup](#-firebase-setup)
+- [API Routes](#-api-routes)
+- [Supported Languages](#-supported-languages)
+- [Interview Domains](#️-interview-domains)
+- [Feedback System](#-feedback-system)
+- [Deployment](#-deployment)
+- [Troubleshooting](#-troubleshooting)
+- [Credits](#-credits)
 
-2.4 Backend & Database
-Technology	Package	Purpose
-Firebase Auth	firebase, firebase-admin	User authentication (email/password)
-Firestore	firebase-admin	NoSQL database — interviews, feedback, users
-Next.js Server Actions	Built-in	Server-side data mutations without API routes
-Next.js API Routes	Built-in	Voice API proxy routes (TTS, STT, generate)
-HTTP Cookies	next/headers	Session management (7-day httpOnly cookies)
+---
 
-2.5 Frontend Libraries
-Library	Version	Purpose
-Recharts	2.12.0	Radar chart for 6-category score visualization
-React Hook Form	7.54.2	Form state management (sign in/sign up)
-Zod	3.24.2	Schema validation (feedback schema, form validation)
-@hookform/resolvers	4.1.3	Bridge between React Hook Form and Zod
-Sonner	2.0.1	Toast notifications (success, error feedback)
-dayjs	1.11.13	Date formatting on interview cards and feedback
-lucide-react	0.482.0	Icon library
-next-themes	0.4.6	Dark/light theme management
+## 🎯 What is ZenPrep?
 
-2.6 Radix UI Primitives
-Primitive	Package	Used For
-Label	@radix-ui/react-label	Accessible form labels in AuthForm
-Slot	@radix-ui/react-slot	asChild prop pattern in Button component
+ZenPrep is the only open-source mock interview platform that lets Indian job seekers **practice voice interviews in their native language** and receive detailed, AI-generated feedback.
 
+Most interview tools are English-only, text-based, and give generic tips. ZenPrep is different:
 
+| Feature | Other Platforms | ZenPrep |
+|---|---|---|
+| Language Support | English only | **11 Indian languages** |
+| Interview Mode | Text-based | **Voice — AI speaks & listens** |
+| Feedback Engine | Generic tips | **6-dimension AI scoring** |
+| Upskilling Resources | None | **AI-curated per weak area** |
+| Domain Coverage | Generic | **11 specialized domains** |
+| Score Visualization | Simple number | **Interactive radar chart** |
 
-3. System Architecture
-3.1 High-Level Architecture
-ZenPrep follows a full-stack Next.js architecture with server-side rendering for data fetching, client-side React for UI interactions, and API routes as secure proxies for third-party AI services.
+---
 
-The system has 5 main layers:
-•Browser Layer — React components, voice recording via MediaRecorder API, audio playback
-•Next.js App Router — Server Components for data, Client Components for interactivity
-•Server Actions — Direct Firestore operations without REST API overhead
-•API Routes — Secure proxies for Sarvam AI (keeps API keys server-side)
-•External Services — Groq LLM, Sarvam AI Voice, Firebase Auth + Firestore
+## ✨ Key Features
 
-3.2 Data Flow — Interview Session
-The complete interview flow from start to feedback:
+- 🗣️ **Real Voice Interviews** — AI speaks questions aloud, you answer with your mic
+- 🌐 **11 Indian Languages** — Hindi, Tamil, Telugu, Bengali, Kannada, Malayalam, Marathi, Gujarati, Punjabi, Odia + English
+- 🤖 **Powered by Groq LLaMA 3.3 70B** — Sub-second question generation and deep feedback analysis
+- 🎙️ **Sarvam AI Voice Engine** — India's first multilingual voice AI (`bulbul:v2` TTS + `saarika:v2.5` STT)
+- 📊 **6-Category Feedback** — Communication, Technical Knowledge, Problem Solving, Cultural Fit, Confidence, Depth
+- 📚 **Upskilling Resources** — AI-curated YouTube, Coursera, and docs links for every weak area (score < 75)
+- 🏢 **11 Interview Domains** — Full Stack, AI/ML, DevOps, Finance, HR, Data Science, Mobile, and more
+- 📈 **Dashboard Analytics** — Track your average score, best performance, and top domain over time
+- 🔐 **Secure Auth** — Firebase Email/Password with httpOnly session cookies
 
-Step	What Happens	Technology Used
-1. Generate	User fills form → POST /api/vapi/generate → Groq generates N questions → saved to Firestore	Groq LLaMA, Firestore
-2. Start	User clicks Start → Agent fetches questions → TTS speaks welcome message	Sarvam TTS bulbul:v2
-3. Question	Agent speaks question → POST /api/sarvam/tts → base64 audio → browser plays	Sarvam TTS, Web Audio API
-4. Record	User speaks → getUserMedia() → MediaRecorder records chunks → user clicks Done	Browser MediaRecorder API
-5. Transcribe	Audio chunks → POST /api/sarvam/stt → FormData multipart → transcript text	Sarvam STT saarika:v2.5
-6. Loop	Transcript saved to state → next question spoken → repeat for all questions	React state, useCallback
-7. Feedback	All answers → createFeedback() → Groq analyzes → 6 scores + resources → Firestore	Groq LLaMA, Zod schema
-8. Results	router.push() → feedback page → radar chart + category cards + resource links	Recharts, Next.js router
+---
 
-3.3 File Structure
-zenprep/
-├── app/                    # Next.js App Router
-│   ├── (auth)/             # Auth route group → /sign-in, /sign-up
-│   ├── (root)/             # Protected route group → /, /interview
-│   │   └── interview/
-│   │       ├── page.tsx    # Interview setup form
-│   │       └── [id]/
-│   │           ├── page.tsx          # Live voice interview
-│   │           └── feedback/page.tsx  # Score + resources
-│   └── api/
-│       ├── sarvam/tts/route.ts  # TTS proxy
-│       ├── sarvam/stt/route.ts  # STT proxy
-│       └── vapi/generate/route.ts # Question generation
-├── components/             # React components (43 files total)
-├── constants/              # Languages, domains, schemas
-├── firebase/               # Admin + client SDK config
-├── lib/
-│   ├── sarvam.ts           # Voice SDK (TTS, STT, mic)
-│   └── actions/            # Server actions
-├── types/index.d.ts        # Global TypeScript types
-└── public/                 # Static assets
+## 🛠️ Tech Stack
 
+### Core
+| Technology | Version | Role |
+|---|---|---|
+| [Next.js](https://nextjs.org) | 16.x | Full-stack framework (App Router + Turbopack) |
+| [TypeScript](https://typescriptlang.org) | 5.x | Type-safe development |
+| [React](https://react.dev) | 19.x | UI components |
+| [Tailwind CSS](https://tailwindcss.com) | 4.x | Utility-first styling |
 
+### AI & Voice
+| Service | Model | Purpose |
+|---|---|---|
+| [Groq AI](https://groq.com) | `llama-3.3-70b-versatile` | Question generation + Feedback analysis |
+| [Sarvam AI](https://sarvam.ai) | `bulbul:v2` | Text-to-Speech (AI speaks questions) |
+| [Sarvam AI](https://sarvam.ai) | `saarika:v2.5` | Speech-to-Text (records your answers) |
+| [Vercel AI SDK](https://sdk.vercel.ai) | `ai` + `@ai-sdk/groq` | Unified LLM interface |
 
-4. Key Concepts Explained
-4.1 Next.js App Router
-ZenPrep uses Next.js 15+ App Router which introduces Server Components by default. This means components run on the server and send HTML to the browser — enabling direct database queries without a separate API layer.
+### Backend & Database
+| Technology | Purpose |
+|---|---|
+| [Firebase Auth](https://firebase.google.com) | Email/password authentication |
+| [Firestore](https://firebase.google.com) | NoSQL database for interviews + feedback |
+| [Next.js Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations) | Direct DB mutations without REST overhead |
+| [Next.js API Routes](https://nextjs.org/docs/app/building-your-application/routing/route-handlers) | Secure server-side proxy for AI APIs |
 
-Concept	How Used in ZenPrep	Benefit
-Server Components	Dashboard, InterviewCard, FeedbackPage	Fetch Firestore data without exposing credentials
-Client Components	Agent, AuthForm, LanguagePicker, DomainPicker	Browser APIs (mic, audio), event handlers
-Server Actions	createFeedback, getInterviews, signIn/signUp	Direct DB mutations, no REST API needed
-Route Groups	(auth) and (root) folders	Different layouts without affecting URLs
-Dynamic Routes	[id] folder in interview/	Interview-specific pages /interview/abc123
-API Routes	app/api/ folder	Server-side proxy for Sarvam AI keys
+### Frontend Libraries
+| Library | Version | Purpose |
+|---|---|---|
+| [Recharts](https://recharts.org) | 2.12.0 | Radar chart for score visualization |
+| [React Hook Form](https://react-hook-form.com) | 7.54.2 | Form state management |
+| [Zod](https://zod.dev) | 3.24.2 | Schema validation for forms + AI responses |
+| [Sonner](https://sonner.emilkowal.ski) | 2.0.1 | Toast notifications |
+| [dayjs](https://day.js.org) | 1.11.13 | Date formatting |
+| [lucide-react](https://lucide.dev) | 0.482.0 | Icons |
 
-4.2 Voice Interview Architecture
-The voice system uses three Web APIs together:
+---
 
-•getUserMedia() — requests microphone permission from the browser
-•MediaRecorder API — records audio in webm/ogg format in 100ms chunks
-•Web Audio API — plays TTS audio returned as base64-encoded WAV
+## 🔄 How It Works
 
-The clever part is the Promise pattern in listen():
+```
+1. Setup    →  Choose language + domain + experience level
+2. Generate →  Groq LLaMA creates N custom interview questions
+3. Speak    →  AI reads each question aloud via Sarvam TTS
+4. Record   →  Your mic records your answer via MediaRecorder API
+5. Transcribe → Sarvam STT converts your audio to text
+6. Repeat   →  Loop for all questions
+7. Analyze  →  Groq analyzes full transcript → 6 scores + resources
+8. Review   →  See radar chart, category breakdown, upskilling links
+```
+
+### Voice Interview Architecture
+
+The `listen()` function uses a clever **Promise-from-outside** pattern:
+
+```typescript
 // listen() starts recording and returns a Promise
-// The Promise only resolves when user clicks 'Done Answering'
-// stopListening() → mediaRecorder.stop() → onstop fires → resolve(transcript)
-This lets runInterview() use a simple await listen() as if it were synchronous, while actually waiting for the user to finish speaking.
+// The Promise only resolves when user clicks "Done Answering"
+const transcript = await listen()  // waits here...
 
-4.3 Feedback Schema with Zod
-The feedback structure is validated with Zod to ensure Groq's response matches exactly what the app expects:
-feedbackSchema = z.object({
-  totalScore: z.number().min(0).max(100),
-  categoryScores: z.tuple([6 categories with name + score + comment]),
-  strengths: z.array(z.string()),
-  areasForImprovement: z.array(z.string()),
-  finalAssessment: z.string(),
-  upskillResources: z.array(topic, title, url, platform, type, difficulty)
-})
-Zod.parse() throws an error if Groq's JSON doesn't match — ensuring the feedback page never crashes from unexpected data shapes.
+// User clicks "Done Answering" → stopListening() → mediaRecorder.stop()
+// → onstop fires → STT API call → resolve(transcript)
+// → listen() returns with the transcribed text
+```
 
-4.4 Firebase Security Pattern
-ZenPrep uses a dual Firebase setup for security:
+This lets the interview loop (`runInterview()`) use clean sequential `await` calls for each question, while actually waiting for the user to finish speaking.
 
-SDK	File	Used For	Security
-Firebase Client	firebase/client.ts	Browser auth (createUser, signIn)	NEXT_PUBLIC_ vars — safe to expose
-Firebase Admin	firebase/admin.ts	Server DB reads/writes	Private key — never sent to browser
-The pattern: browser creates the user with Client SDK → gets ID token → sends to Server Action → Server Action verifies with Admin SDK → creates session cookie. The session cookie is httpOnly (not readable by JavaScript), preventing XSS attacks.
+---
 
-4.5 Sarvam AI Voice Engine
-Sarvam AI is India's first multilingual voice AI. ZenPrep replaces the English-only Vapi SDK with Sarvam's REST API for three capabilities:
+## 📁 Project Structure
 
-API	Endpoint	Model	Input → Output
-Text-to-Speech	/text-to-speech	bulbul:v2	Text + language code → base64 WAV audio
-Speech-to-Text	/speech-to-text	saarika:v2.5	Audio file (webm) → transcript text
-Translation	/translate	mayura:v1	Text + source/target language → translated text
-The TTS model supports 500 character chunks. Long questions are split at sentence boundaries before sending, then audio chunks are played sequentially.
+```
+zenprep/
+├── app/
+│   ├── (auth)/                    # Route group — no "(auth)" in URL
+│   │   ├── layout.tsx             # Redirects to / if already logged in
+│   │   ├── sign-in/page.tsx       # /sign-in
+│   │   └── sign-up/page.tsx       # /sign-up
+│   ├── (root)/                    # Route group — protected pages
+│   │   ├── layout.tsx             # Navbar + auth guard
+│   │   ├── page.tsx               # / — Dashboard
+│   │   └── interview/
+│   │       ├── page.tsx           # /interview — Setup form
+│   │       └── [id]/
+│   │           ├── page.tsx       # /interview/:id — Live voice session
+│   │           └── feedback/
+│   │               └── page.tsx   # /interview/:id/feedback — Results
+│   ├── api/
+│   │   ├── sarvam/tts/route.ts    # POST /api/sarvam/tts
+│   │   ├── sarvam/stt/route.ts    # POST /api/sarvam/stt
+│   │   └── vapi/generate/route.ts # POST /api/vapi/generate
+│   ├── globals.css                # Design system (dark theme)
+│   └── layout.tsx                 # Root layout
+├── components/
+│   ├── Agent.tsx                  # ⭐ Core voice interview loop (650 lines)
+│   ├── AuthForm.tsx               # Sign in / Sign up form
+│   ├── InterviewCard.tsx          # Dashboard interview card
+│   ├── DisplayTechIcons.tsx       # Tech stack icon renderer
+│   ├── LanguagePicker.tsx         # 11 language pill buttons
+│   ├── DomainPicker.tsx           # 11 domain selection grid
+│   ├── ResourceCard.tsx           # Upskilling resource link card
+│   ├── ScoreChart.tsx             # Recharts radar chart
+│   └── ui/
+│       ├── button.tsx             # shadcn Button component
+│       ├── input.tsx              # shadcn Input component
+│       └── label.tsx              # shadcn Label component
+├── constants/
+│   ├── index.ts                   # Zod feedback schema + config
+│   ├── languages.ts               # 11 Indian language definitions
+│   └── domains.ts                 # 11 interview domains + techstacks
+├── firebase/
+│   ├── admin.ts                   # Server-side Firebase Admin SDK
+│   └── client.ts                  # Browser Firebase Client SDK
+├── lib/
+│   ├── utils.ts                   # cn() + getTechLogos()
+│   ├── sarvam.ts                  # Voice SDK (TTS, STT, mic recording)
+│   └── actions/
+│       ├── auth.action.ts         # signIn, signUp, getCurrentUser
+│       └── general.action.ts      # createFeedback, getInterviews, etc.
+├── types/
+│   └── index.d.ts                 # Global TypeScript types
+├── public/                        # Static assets (logo, avatars, covers)
+├── .env.example                   # Environment variable template
+├── .gitignore
+├── next.config.ts
+├── package.json
+└── tsconfig.json
+```
 
-4.6 Groq LLM Integration
-ZenPrep uses Groq as the LLM provider because:
-•Free tier with no daily quotas per project
-•Sub-second inference (Groq's hardware acceleration)
-•LLaMA 3.3 70B is comparable to GPT-4 for structured tasks
+---
 
-Two Groq calls are made during each interview session:
-•Question Generation — generates N interview questions as plain text, one per line
-•Feedback Analysis — analyzes full transcript, returns JSON with scores + resources
-The feedback call uses a manual JSON parsing approach (regex + JSON.parse + Zod) instead of generateObject() because Groq's LLaMA models don't support the json_schema response format required by the Vercel AI SDK's structured output feature.
+## 🚀 Getting Started
 
+### Prerequisites
 
+- **Node.js** 18+ ([download](https://nodejs.org))
+- **npm** 8+ (comes with Node.js)
+- **Git** ([download](https://git-scm.com))
+- **Chrome** browser (best mic support)
+- API keys for Firebase, Groq, and Sarvam AI
 
-5. Component Reference
-5.1 Core Components
-Component	Type	Lines	Key Responsibility
-Agent.tsx	Client	650	Full voice interview loop — TTS, STT, transcript, feedback
-AuthForm.tsx	Client	132	Sign in / Sign up with Firebase + React Hook Form + Zod
-InterviewCard.tsx	Server	~90	Dashboard card — score, language badge, techstack icons
-DisplayTechIcons.tsx	Server	~45	Renders devicon SVGs for techstack array
-LanguagePicker.tsx	Client	~50	11 language pill buttons, fires onSelect callback
-DomainPicker.tsx	Client	~55	11 domain cards grid, auto-fills techstack on select
-ResourceCard.tsx	Server	88	Upskilling resource link — platform icon, free/paid badge
-ScoreChart.tsx	Client	77	Recharts RadarChart for 6 category scores
+### 1. Clone the Repository
 
-5.2 UI Primitives (shadcn-style)
-Component	File	Based On
-Button	components/ui/button.tsx	Radix Slot + class-variance-authority variants
-Input	components/ui/input.tsx	Native HTML input with Tailwind styling
-Label	components/ui/label.tsx	@radix-ui/react-label for accessibility
+```bash
+git clone https://github.com/VENKATCHINTHAKINDI01/ZenPrep-.git
+cd ZenPrep-
+```
 
-5.3 Page Components
-Page	Route	Data Source	Key Features
-Dashboard	/	Firestore (parallel fetch)	Stats cards, interview grids, CTA banner
-Interview Setup	/interview	Client state	Language picker, domain picker, config form
-Live Interview	/interview/[id]	Firestore interview doc	Agent component in interview mode
-Feedback	/interview/[id]/feedback	Firestore feedback doc	Radar chart, category bars, resources
-Sign In	/sign-in	Client (Firebase Auth)	Email/password form
-Sign Up	/sign-up	Client (Firebase Auth)	Name + email + password form
+### 2. Install Dependencies
 
-
-
-6. API Routes
-6.1 POST /api/sarvam/tts
-Converts text to speech using Sarvam AI.
-Field	Details
-Method	POST
-Request Body	{ text: string, languageCode: SarvamLanguageCode }
-Response	{ success: true, audioBase64: string, mimeType: 'audio/wav' }
-Model	bulbul:v2
-Max Text	500 characters (longer text is chunked)
-Security	SARVAM_API_KEY never exposed to browser
-
-6.2 POST /api/sarvam/stt
-Converts recorded audio to text transcript.
-Field	Details
-Method	POST
-Request Body	FormData with audio (File) and languageCode (string)
-Response	{ success: true, transcript: string, confidence: number }
-Model	saarika:v2.5
-Audio Format	webm/ogg from MediaRecorder API
-Security	SARVAM_API_KEY never exposed to browser
-
-6.3 POST /api/vapi/generate
-Generates interview questions using Groq LLM and saves interview to Firestore.
-Field	Details
-Method	POST
-Request Body	{ type, role, level, techstack, amount, userid, language, domain }
-Response	{ success: true, interviewId: string }
-Model	llama-3.3-70b-versatile via Groq
-Side Effect	Creates interview document in Firestore interviews collection
-Security	GROQ_API_KEY never exposed to browser
-
-
-
-7. Database Schema (Firestore)
-7.1 interviews Collection
-Field	Type	Description
-id	string (auto)	Firestore document ID
-userId	string	Firebase Auth UID of creator
-role	string	Job role e.g. 'Frontend Developer'
-type	string	'technical' | 'behavioral' | 'mixed'
-level	string	'intern' | 'junior' | 'mid' | 'senior' | 'lead'
-techstack	string[]	Array of technologies e.g. ['React', 'Node.js']
-questions	string[]	Generated interview questions
-finalized	boolean	true = available for others to take
-language	string	Sarvam language code e.g. 'hi-IN'
-domain	string	Domain ID e.g. 'fullstack', 'ai-ml'
-createdAt	string	ISO timestamp
-
-7.2 feedback Collection
-Field	Type	Description
-id	string (auto)	Firestore document ID
-interviewId	string	Reference to interviews document
-userId	string	Firebase Auth UID
-totalScore	number	Average of 6 category scores (0-100)
-categoryScores	array	6 objects: { name, score, comment }
-strengths	string[]	3-5 strength points from AI
-areasForImprovement	string[]	3-5 improvement areas from AI
-finalAssessment	string	Overall paragraph assessment
-upskillResources	array	Resources for weak areas (score < 75)
-languageUsed	string	Language code of the interview
-createdAt	string	ISO timestamp
-
-7.3 Required Firestore Indexes
-Collection	Fields	Purpose
-interviews	userId ASC, createdAt DESC	User's own interview history
-interviews	finalized ASC, userId ASC, createdAt DESC	Available interviews for others
-feedback	interviewId ASC, userId ASC	Get feedback for a specific interview
-feedback	userId ASC, createdAt ASC	User's feedback history for charts
-
-
-
-8. Complete Setup Guide
-8.1 Prerequisites
-Tool	Required Version	Installation
-Node.js	18+	nodejs.org or via nvm
-npm	8+	Comes with Node.js
-Git	Any	git-scm.com
-VS Code	Any	code.visualstudio.com
-Chrome	Any	For microphone testing
-
-8.2 API Keys Required
-Service	URL	Free Tier	Key Name in .env
-Firebase	console.firebase.google.com	Yes (Spark plan)	7 NEXT_PUBLIC_ + 3 admin vars
-Groq AI	console.groq.com	Yes (generous)	GROQ_API_KEY
-Sarvam AI	dashboard.sarvam.ai	Yes (free credits)	SARVAM_API_KEY
-
-8.3 Installation Steps
-Run these commands in your terminal:
-# 1. Navigate to project folder
-cd zenprep
-
-# 2. Install all dependencies
+```bash
 npm install
+```
 
-# 3. Copy environment template
+### 3. Configure Environment Variables
+
+```bash
 cp .env.example .env.local
+```
 
-# 4. Fill in API keys (open in VS Code)
-code .env.local
+Then open `.env.local` and fill in all values (see [Environment Variables](#-environment-variables) below).
 
-# 5. Start development server
+### 4. Start the Development Server
+
+```bash
 npm run dev
+```
 
-# App runs at http://localhost:3000
+Open [http://localhost:3000](http://localhost:3000) in Chrome 🎉
 
-8.4 Environment Variables
-Variable	Source	Required
-NEXT_PUBLIC_FIREBASE_API_KEY	Firebase Console → Project Settings → Web App	Yes
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN	Firebase Console → Project Settings → Web App	Yes
-NEXT_PUBLIC_FIREBASE_PROJECT_ID	Firebase Console → Project Settings → Web App	Yes
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET	Firebase Console → Project Settings → Web App	Yes
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID	Firebase Console → Project Settings → Web App	Yes
-NEXT_PUBLIC_FIREBASE_APP_ID	Firebase Console → Project Settings → Web App	Yes
-FIREBASE_PROJECT_ID	Service Account JSON → project_id	Yes
-FIREBASE_CLIENT_EMAIL	Service Account JSON → client_email	Yes
-FIREBASE_PRIVATE_KEY	Service Account JSON → private_key (in quotes)	Yes
-GROQ_API_KEY	console.groq.com → API Keys	Yes
-SARVAM_API_KEY	dashboard.sarvam.ai → API Keys	Yes
+---
 
+## 🔑 Environment Variables
 
+```env
+# ── Firebase Client (NEXT_PUBLIC_ = safe for browser) ──────────
+# Get from: Firebase Console → Project Settings → Your Apps → Web App
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
 
-9. Interview Domains
-Domain ID	Label	Icon	Default Techstack
-technical	Technical / DSA	💻	Data Structures, Algorithms, System Design, LeetCode
-fullstack	Full Stack Developer	🌐	React, Node.js, MongoDB, TypeScript, Next.js
-fullstack-java	Full Stack Java	☕	Java, Spring Boot, React, MySQL, Docker
-ai-ml	AI / Machine Learning	🤖	Python, TensorFlow, PyTorch, Scikit-learn, MLOps
-devops	DevOps / Cloud	☁️	AWS, Docker, Kubernetes, CI/CD, Terraform
-hr-behavioral	HR / Behavioral	🤝	Communication, Leadership, Problem Solving, Teamwork
-finance	Finance	📊	Valuation, Financial Modeling, Excel, Accounting
-marketing	Marketing	📣	Digital Marketing, SEO, Analytics, Brand Strategy
-data-science	Data Science	📈	Python, SQL, Tableau, Statistics, Pandas
-mobile	Mobile Development	📱	React Native, Flutter, iOS, Android, Firebase
-custom	Custom / Other	✏️	User-defined
+# ── Firebase Admin (server-only, NEVER exposed to browser) ─────
+# Get from: Firebase Console → Project Settings → Service Accounts → Generate Key
+FIREBASE_PROJECT_ID=
+FIREBASE_CLIENT_EMAIL=
+FIREBASE_PRIVATE_KEY=""   # Wrap in quotes — keep the \n characters!
 
+# ── Groq AI ────────────────────────────────────────────────────
+# Get from: https://console.groq.com/keys
+GROQ_API_KEY=
 
+# ── Sarvam AI ──────────────────────────────────────────────────
+# Get from: https://dashboard.sarvam.ai
+SARVAM_API_KEY=
+```
 
-10. Feedback System
-10.1 Six Evaluation Categories
-#	Category	What It Measures
-1	Communication Skills	Clarity, articulation, structured answers, vocabulary
-2	Technical Knowledge	Accuracy of technical answers, concepts, frameworks
-3	Problem Solving	Approach to problems, logical thinking, edge cases
-4	Cultural Fit	Attitude, collaboration signals, company values alignment
-5	Confidence and Clarity	Voice confidence, hesitation, directness of answers
-6	Depth of Knowledge	Beyond surface answers — internals, tradeoffs, examples (NEW)
+> ⚠️ **Important:** `FIREBASE_PRIVATE_KEY` must be wrapped in double quotes and preserve the literal `\n` characters exactly as they appear in the downloaded JSON file.
 
-10.2 Score Thresholds
-Score Range	Color	Meaning
-75 – 100	Green	Strong performance — ready for interviews
-50 – 74	Yellow	Average — needs improvement in this area
-0 – 49	Red	Weak area — upskilling resources provided
+---
 
-10.3 Upskilling Resources
-For every category scoring below 75, Groq generates 2-3 real, verified learning resources:
-Resource Field	Values	Example
-platform	YouTube, Coursera, Udemy, Docs, LeetCode, HackerRank, GitHub, Blog	YouTube
-type	free | paid	free
-difficulty	Beginner | Intermediate | Advanced	Intermediate
-topic	The weak area being addressed	React Hooks
-url	Real URL to resource	youtube.com/...
+## 🔥 Firebase Setup
 
+1. Go to [Firebase Console](https://console.firebase.google.com) → **Add Project**
+2. Enable **Authentication** → Sign-in method → **Email/Password** → Enable
+3. Enable **Firestore Database** → Start in **production mode** → Choose region (`asia-south1` for India)
+4. Go to **Project Settings** → **General** → Your Apps → **Add Web App** → Copy config to `.env.local`
+5. Go to **Project Settings** → **Service Accounts** → **Generate new private key** → Copy values to `.env.local`
 
+### Required Firestore Indexes
 
-11. Common Issues & Solutions
-Error	Cause	Solution
-FAILED_PRECONDITION: requires an index	Firestore composite index missing	Click the URL in the error → Create Index in Firebase Console
-quota exceeded (429)	Gemini/Groq free tier exhausted	Create new project for fresh quota or wait for reset
-model not found (404)	Deprecated model name used	Check console.groq.com/docs/deprecations for current names
-Cannot use undefined as Firestore value	userId is null/undefined	Check isAuthenticated() guard in layout and add ignoreUndefinedProperties: true
-Port already in use	Previous Next.js process still running	pkill -f 'next' && sleep 2 && npm run dev
-Export X doesn't exist in module	Empty file or wrong export name	Check file has content with cat filename.ts
-saarika:v2 deprecated	Sarvam updated STT model	Replace saarika:v2 with saarika:v2.5 in STT route
-AI_UnsupportedModelVersionError	AI SDK version mismatch	npm install ai@latest @ai-sdk/groq@latest
-json_schema not supported	Groq model doesn't support structured output	Use generateText() + manual JSON.parse() instead of generateObject()
+Add these composite indexes in Firebase Console → Firestore → Indexes:
 
+| Collection | Field 1 | Field 2 | Field 3 |
+|---|---|---|---|
+| `interviews` | `userId` ASC | `createdAt` DESC | — |
+| `interviews` | `finalized` ASC | `userId` ASC | `createdAt` DESC |
+| `feedback` | `interviewId` ASC | `userId` ASC | — |
+| `feedback` | `userId` ASC | `createdAt` ASC | — |
 
+> 💡 If you see a `FAILED_PRECONDITION` error in the console, it includes a direct link to create the missing index — just click it!
 
-12. Deployment Guide (Vercel)
-12.1 Steps
-ZenPrep deploys to Vercel in minutes:
+---
 
-1.Push code to GitHub — git init && git add . && git commit -m 'init' && git push
-2.Go to vercel.com → New Project → Import your GitHub repo
-3.In Vercel dashboard → Settings → Environment Variables → add all 11 vars from .env.local
-4.Click Deploy — live URL generated in ~2 minutes
+## 📡 API Routes
 
-12.2 Build Command
+### `POST /api/sarvam/tts`
+Converts text to speech. Keeps `SARVAM_API_KEY` server-side.
+
+```typescript
+// Request
+{ text: string, languageCode: "hi-IN" | "ta-IN" | ... }
+
+// Response
+{ success: true, audioBase64: string, mimeType: "audio/wav" }
+```
+
+### `POST /api/sarvam/stt`
+Converts recorded audio to text transcript.
+
+```typescript
+// Request (FormData)
+FormData: { audio: File, languageCode: string }
+
+// Response
+{ success: true, transcript: string }
+```
+
+### `POST /api/vapi/generate`
+Generates interview questions via Groq and saves to Firestore.
+
+```typescript
+// Request
+{ type, role, level, techstack, amount, userid, language, domain }
+
+// Response
+{ success: true, interviewId: string }
+```
+
+---
+
+## 🌐 Supported Languages
+
+| Language | Code | Native Script |
+|---|---|---|
+| English (India) | `en-IN` | English |
+| Hindi | `hi-IN` | हिन्दी |
+| Tamil | `ta-IN` | தமிழ் |
+| Telugu | `te-IN` | తెలుగు |
+| Bengali | `bn-IN` | বাংলা |
+| Kannada | `kn-IN` | ಕನ್ನಡ |
+| Malayalam | `ml-IN` | മലയാളം |
+| Marathi | `mr-IN` | मराठी |
+| Gujarati | `gu-IN` | ગુજરાતી |
+| Punjabi | `pa-IN` | ਪੰਜਾਬੀ |
+| Odia | `or-IN` | ଓଡ଼ିଆ |
+
+---
+
+## 🏢 Interview Domains
+
+| Domain | Default Tech Stack |
+|---|---|
+| 💻 Technical / DSA | Data Structures, Algorithms, System Design, LeetCode |
+| 🌐 Full Stack Developer | React, Node.js, MongoDB, TypeScript, Next.js |
+| ☕ Full Stack Java | Java, Spring Boot, React, MySQL, Docker |
+| 🤖 AI / Machine Learning | Python, TensorFlow, PyTorch, Scikit-learn, MLOps |
+| ☁️ DevOps / Cloud | AWS, Docker, Kubernetes, CI/CD, Terraform |
+| 🤝 HR / Behavioral | Communication, Leadership, Problem Solving, Teamwork |
+| 📊 Finance | Valuation, Financial Modeling, Excel, Accounting |
+| 📣 Marketing | Digital Marketing, SEO, Analytics, Brand Strategy |
+| 📈 Data Science | Python, SQL, Tableau, Statistics, Pandas |
+| 📱 Mobile Development | React Native, Flutter, iOS, Android, Firebase |
+| ✏️ Custom | User-defined |
+
+---
+
+## 📊 Feedback System
+
+After every interview, Groq analyzes your full transcript and scores you across 6 dimensions:
+
+| # | Category | What It Measures |
+|---|---|---|
+| 1 | **Communication Skills** | Clarity, articulation, structured answers |
+| 2 | **Technical Knowledge** | Accuracy, concepts, framework understanding |
+| 3 | **Problem Solving** | Approach, logic, edge case handling |
+| 4 | **Cultural Fit** | Attitude, collaboration, values alignment |
+| 5 | **Confidence and Clarity** | Directness, hesitation, assertiveness |
+| 6 | **Depth of Knowledge** | Internals, tradeoffs, real-world examples |
+
+### Score Thresholds
+
+| Range | Meaning | Action |
+|---|---|---|
+| 75 – 100 | 🟢 Strong | Ready for interviews |
+| 50 – 74 | 🟡 Average | Needs improvement |
+| 0 – 49 | 🔴 Weak | Upskilling resources provided |
+
+For every category below 75, the AI generates 2–3 curated learning resources (YouTube, Coursera, official docs, LeetCode) tailored to that specific weakness.
+
+---
+
+## 🚢 Deployment
+
+### Deploy to Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Go to [vercel.com](https://vercel.com) → **New Project** → Import your repo
+3. Add all environment variables in Vercel Dashboard → Settings → Environment Variables
+4. Click **Deploy** — live in ~2 minutes ✅
+
+### Build Locally
+
+```bash
 npm run build
-Note: next.config.ts has typescript.ignoreBuildErrors: true to allow deployment with minor type issues.
+npm start
+```
 
+---
 
+## 🔧 Troubleshooting
 
-13. Credits & Acknowledgements
-Resource	Credit	URL
-Base Project	adrianhajdin / PrepWise	github.com/adrianhajdin
-Voice AI	Sarvam AI	sarvam.ai
-LLM Provider	Groq	groq.com
-LLM Model	Meta LLaMA 3.3 70B	llama.meta.com
-Framework	Vercel / Next.js	nextjs.org
-UI Components	shadcn/ui	ui.shadcn.com
-Icons	Devicon	devicon.dev
-Charts	Recharts	recharts.org
-Auth + DB	Google Firebase	firebase.google.com
+| Error | Cause | Fix |
+|---|---|---|
+| `FAILED_PRECONDITION: requires an index` | Missing Firestore index | Click the URL in the error → Create Index |
+| `Cannot use undefined as Firestore value` | `userId` is null/undefined | Add auth guard in layout.tsx |
+| `saarika:v2 deprecated` | Old STT model name | Use `saarika:v2.5` in STT route |
+| `AI_UnsupportedModelVersionError` | Old AI SDK version | `npm install ai@latest @ai-sdk/groq@latest` |
+| `json_schema not supported` | Groq structured output | Use `generateText()` + `JSON.parse()` |
+| `src refspec main does not match any` | No git commit yet | Run `git add . && git commit -m "init"` first |
+| Port already in use | Old Next.js process | `pkill -f "next" && npm run dev` |
 
+---
 
-ZenPrep — Built with ❤️ for India 🇮🇳  |  Prepare Calmly. Perform Confidently.
+## 📦 Database Schema
+
+### `interviews` collection
+```typescript
+{
+  id: string,              // Firestore auto-ID
+  userId: string,          // Firebase Auth UID
+  role: string,            // "Frontend Developer"
+  type: "technical" | "behavioral" | "mixed",
+  level: "intern" | "junior" | "mid" | "senior" | "lead",
+  techstack: string[],     // ["React", "Node.js"]
+  questions: string[],     // AI-generated questions
+  finalized: boolean,      // available for others to take
+  language: string,        // "hi-IN"
+  domain: string,          // "fullstack"
+  createdAt: string        // ISO timestamp
+}
+```
+
+### `feedback` collection
+```typescript
+{
+  id: string,
+  interviewId: string,
+  userId: string,
+  totalScore: number,      // 0-100
+  categoryScores: [{       // 6 categories
+    name: string,
+    score: number,
+    comment: string
+  }],
+  strengths: string[],
+  areasForImprovement: string[],
+  finalAssessment: string,
+  upskillResources: [{
+    topic: string,
+    title: string,
+    url: string,
+    platform: string,
+    type: "free" | "paid",
+    difficulty: "Beginner" | "Intermediate" | "Advanced"
+  }],
+  createdAt: string
+}
+```
+
+---
+
+## 🙏 Credits
+
+| Resource | Credit |
+|---|---|
+| Base Project Inspiration | [adrianhajdin/PrepWise](https://github.com/adrianhajdin) |
+| Voice AI | [Sarvam AI](https://sarvam.ai) — India's multilingual voice AI |
+| LLM Provider | [Groq](https://groq.com) — Ultra-fast inference |
+| LLM Model | [Meta LLaMA 3.3 70B](https://llama.meta.com) |
+| Framework | [Vercel / Next.js](https://nextjs.org) |
+| UI Components | [shadcn/ui](https://ui.shadcn.com) |
+| Tech Icons | [Devicon](https://devicon.dev) |
+| Charts | [Recharts](https://recharts.org) |
+| Database + Auth | [Google Firebase](https://firebase.google.com) |
+
+---
+
+<div align="center">
+
+Built with ❤️ for India 🇮🇳
+
+**ZenPrep** — *Prepare Calmly. Perform Confidently.*
+
+</div>
