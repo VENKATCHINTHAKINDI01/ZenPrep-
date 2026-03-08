@@ -93,7 +93,7 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
           <h2 className="text-primary-100">ZenPrep</h2>
         </div>
         <h3 className="text-center">
-          {isSignIn ? "Welcome back" : "Create your account"}
+          {isSignIn ? "Welcome" : "Create your account"}
         </h3>
 
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
