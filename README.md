@@ -499,4 +499,6 @@ Built with ❤️ for India 🇮🇳
 
 **ZenPrep** — *Prepare Calmly. Perform Confidently.*
 
+**VENKAT CHINTHAKINDI**
+
 </div>
