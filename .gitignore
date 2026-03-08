@@ -1,0 +1,81 @@
+
+
+# ── Environment Variables (NEVER commit these) ──
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+.env*.local
+
+# ── Next.js ──────────────────────────────────
+.next/
+out/
+build/
+dist/
+
+# ── Node Modules ─────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# ── Firebase ─────────────────────────────────
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+firebase-export-*/
+.firebaserc.local
+
+# ── TypeScript ───────────────────────────────
+*.tsbuildinfo
+next-env.d.ts
+
+# ── OS Files ─────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ── IDE & Editors ────────────────────────────
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*.suo
+*.user
+*.sublime-workspace
+.cursor/
+
+# ── Logs ─────────────────────────────────────
+logs/
+*.log
+lerna-debug.log*
+
+# ── Testing ──────────────────────────────────
+coverage/
+.nyc_output/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# ── Misc ─────────────────────────────────────
+.vercel
+.turbo
+*.tgz
+*.zip
+*.tar.gz
+
+# ── Optional: keep these ─────────────────────
+# !.env.example   ← safe to commit as a template

@@ -1,0 +1,39 @@
+<svg width="260" height="260" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+
+<!-- Glow -->
+<circle cx="130" cy="130" r="120" fill="#efe6ff"/>
+
+<!-- Hair -->
+<path d="M70 90 Q130 10 190 90 L190 160 Q130 200 70 160 Z" fill="#2a1640"/>
+
+<!-- Face -->
+<circle cx="130" cy="120" r="60" fill="#ffd6e7"/>
+
+<!-- Eyes -->
+<circle cx="105" cy="110" r="8" fill="#6b4eff"/>
+<circle cx="155" cy="110" r="8" fill="#6b4eff"/>
+
+<!-- Moving pupils -->
+<circle cx="105" cy="110" r="3" fill="white">
+<animate attributeName="cx" values="103;107;103" dur="1s" repeatCount="indefinite"/>
+</circle>
+
+<circle cx="155" cy="110" r="3" fill="white">
+<animate attributeName="cx" values="153;157;153" dur="1s" repeatCount="indefinite"/>
+</circle>
+
+<!-- Talking mouth -->
+<ellipse cx="130" cy="145" rx="12" ry="6" fill="#8a3ab9">
+<animate attributeName="ry" values="6;12;6" dur="0.6s" repeatCount="indefinite"/>
+</ellipse>
+
+<!-- Sparkles -->
+<circle cx="40" cy="60" r="3" fill="#caa9ff">
+<animate attributeName="cy" values="60;30;60" dur="3s" repeatCount="indefinite"/>
+</circle>
+
+<circle cx="210" cy="70" r="3" fill="#caa9ff">
+<animate attributeName="cy" values="70;40;70" dur="3s" repeatCount="indefinite"/>
+</circle>
+
+</svg>
